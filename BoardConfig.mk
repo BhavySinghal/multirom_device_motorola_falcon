@@ -108,6 +108,31 @@ TARGET_USERIMAGES_USE_EXT4 := true
 TARGET_USERIMAGES_USE_F2FS := true
 COMMON_GLOBAL_CFLAGS += -DNO_SECURE_DISCARD
 
+# TWRP
+#TW_BRIGHTNESS_PATH := /sys/class/backlight/lcd-backlight/brightness
+#TW_MAX_BRIGHTNESS := 126
+TW_IGNORE_MAJOR_AXIS_0 := true
+DEVICE_RESOLUTION := 720x1280
+TW_IGNORE_MAJOR_AXIS_0 := true
+RECOVERY_GRAPHICS_USE_LINELENGTH := true
+TW_NO_USB_STORAGE := true
+BOARD_HAS_NO_REAL_SDCARD := true
+RECOVERY_SDCARD_ON_DATA := true
+HAVE_SELINUX := true
+#TW_INCLUDE_L_CRYPTO := true
+
+PRODUCT_COPY_FILES := device/motorola/falcon/twrp.fstab:recovery/root/etc/twrp.fstab
+
+#MultiROM config. MultiROM also uses parts of TWRP config
+MR_INPUT_TYPE := type_b
+MR_INIT_DEVICES := device/motorola/falcon/mr_init_devices.c
+MR_DPI := hdpi
+MR_DPI_FONT := 160
+MR_FSTAB := $ device/motorola/falcon/twrp.fstab
+MR_KEXEC_MEM_MIN := 0x05000000
+MR_KEXEC_DTB := true
+MR_CONTINUOUS_FB_UPDATE := true
+
 # SELinux
 include device/qcom/sepolicy/sepolicy.mk
 

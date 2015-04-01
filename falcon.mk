@@ -14,11 +14,18 @@
 # limitations under the License.
 #
 
-DEVICE_PACKAGE_OVERLAYS += device/motorola/falcon/overlay
 
-$(call inherit-product, $(SRC_TARGET_DIR)/product/full_base_telephony.mk)
+
+
 $(call inherit-product, frameworks/native/build/phone-xhdpi-1024-dalvik-heap.mk)
-$(call inherit-product-if-exists, vendor/motorola/falcon/falcon-vendor.mk)
+
+$(call inherit-product, $(SRC_TARGET_DIR)/product/languages_full.mk)
+
+$(call inherit-product, device/motorola/msm8226-common/msm8226.mk)
+
+LOCAL_PATH := device/motorola/falcon
+
+DEVICE_PACKAGE_OVERLAYS += device/motorola/falcon/overlay
 
 PRODUCT_AAPT_CONFIG := normal hdpi xhdpi
 PRODUCT_AAPT_PREF_CONFIG := xhdpi
@@ -57,13 +64,6 @@ PRODUCT_PACKAGES += \
 # Filesystem tools
 PRODUCT_PACKAGES += \
     setup_fs
-
-# FM radio
-PRODUCT_PACKAGES += \
-    FM2 \
-    FMRecord \
-    libqcomfm_jni \
-    qcom.fmradio
 
 # GPS
 PRODUCT_PACKAGES += \
@@ -139,3 +139,6 @@ PRODUCT_COPY_FILES += \
     frameworks/native/data/etc/android.hardware.wifi.direct.xml:system/etc/permissions/android.hardware.wifi.direct.xml \
     frameworks/native/data/etc/android.software.sip.xml:system/etc/permissions/android.software.sip.xml \
     frameworks/native/data/etc/handheld_core_hardware.xml:system/etc/permissions/handheld_core_hardware.xml
+
+$(call inherit-product, device/motorola/msm8226-common/keylayout/keylayout.mk)
+$(call inherit-product, vendor/motorola/falcon/falcon-vendor.mk)
